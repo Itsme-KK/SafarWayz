@@ -2,7 +2,6 @@ package com.example.khalid.safarwayz;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private DbHelper db;
     EditText et_name, et_contact, et_newusername, et_newpassword;
     Button btn_register;
     Context ctx = this;
@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        db = new DbHelper(this);
         et_name = (EditText)findViewById(R.id.et_name);
         et_contact = (EditText)findViewById(R.id.et_contact);
         et_newusername = (EditText)findViewById(R.id.et_newusername);
@@ -28,19 +29,22 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register = (Button)findViewById(R.id.btn_register);
     }
 
-    public void registered(View view)
-    {
+    public void registered(View view) {
         String name = et_name.getText().toString();
         String contact = et_contact.getText().toString();
         String newusername = et_newusername.getText().toString();
         String newpassword = et_newpassword.getText().toString();
 
-        DatabaseOperation dop = new DatabaseOperation(ctx);
-        dop.putInformation(dop, name, Integer.parseInt(contact), newusername, newpassword);
-        Toast.makeText(getBaseContext(), "REGISTRATION SUCCESS",Toast.LENGTH_LONG).show();
-        finish();
+        if(name.isEmpty() && contact.isEmpty() && newusername.isEmpty() && newpassword.isEmpty()){
+            displayToast("Fields can't be empty!");
+        } else {
+            db.addUser(name,contact,newusername,newpassword);
+            displayToast("User Registered...");
+            finish();
+        }
+    }
 
-        Intent intent = new Intent("com.example.khalid.safarwayz.SecondActivity");
-        startActivity(intent);
+    private void displayToast(String message){
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

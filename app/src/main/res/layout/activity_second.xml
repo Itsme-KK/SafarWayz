@@ -4,13 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.khalid.safarwayz.SecondActivity">
+    android:paddingBottom="80dp"
+    android:paddingLeft="38dp"
+    android:paddingRight="38dp"
+    android:paddingTop="00dp"
+    tools:context="com.example.khalid.safarwayz.SecondActivity"
+    android:background="#3F4859">
 
 
-    <TextView
+    <Button
+        android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="THANX FOR REGISTRATION OR LOGIN!" />
+        android:text="logout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="55dp"
+        android:textColor="#168FCB"
+        android:padding="10px"
+        android:text="search flight"
+        android:id="@+id/textView" />
+
+    <LinearLayout
+        android:id="@+id/llh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true">
+
+
+        <RadioGroup
+            android:id="@+id/groupRadio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="70px"
+                android:textColor="#8E9DB4"
+                android:text="One Way" />
+
+            <RadioButton
+                android:id="@+id/rbrw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="70px"
+                android:textColor="#8E9DB4"
+                android:text="Round Trip"
+                android:checked="true" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/llh"
+        android:padding="10px">
+
+        <EditText
+            style="@style/editText_style"
+            android:id="@+id/et_source"
+            android:hint="source"
+            android:inputType="textPersonName" />
+
+        <EditText
+            style="@style/editText_style"
+            android:id="@+id/et_destination"
+            android:hint="destination"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingTop="10px"
+            android:textColor="#8E9DB4"
+            android:id="@+id/textView2"
+            android:text="Departure date" />
+
+        <EditText
+            style="@style/editText_style"
+            android:id="@+id/et_departure_date"
+            android:inputType="date"
+            android:hint="Departure Date"
+            android:onClick="calendar"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:paddingTop="10px"
+            android:textColor="#8E9DB4"
+            android:text="Return Date" />
+
+        <EditText
+            style="@style/editText_style"
+            android:id="@+id/et_return_date"
+            android:inputType="date"
+            android:hint="Return Date"
+            android:onClick="calendar"/>
+
+        <Button
+            style="@style/button_style"
+            android:id="@+id/btn_info"
+            android:text="Search Flights"
+            android:onClick="search"/>
+
+    </LinearLayout>
+
+
 </RelativeLayout>
